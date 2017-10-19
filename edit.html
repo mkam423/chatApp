@@ -1,0 +1,32 @@
+<h1>Editing {{.Title}}.txt</h1>
+
+  <div>
+    <textarea name="body" id=writer rows="50" cols="150">
+      {{printf "%s" .Body}}
+    </textarea>
+  </div>
+
+<script>
+// document.writer.writer.focus();
+console.log("Hello testing in edit.html")
+
+function refresh() {
+  var node = document.getElementById('writer')
+  var path = "/save/" + {{.Title}}
+  var body = node.value
+  // console.log("In refresh");
+  // console.log("body: %s", body);
+  // console.log("path: %s", path);
+
+  post(path, body);
+}
+
+function post(path, body) {
+  var xhr = new XMLHttpRequest()
+  xhr.open("POST", path, true)
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8")
+  xhr.send(body)
+}
+
+setInterval(refresh, 100)
+</script>

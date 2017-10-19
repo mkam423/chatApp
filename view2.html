@@ -1,0 +1,19 @@
+
+<head>
+  <!-- <meta http-equiv="refresh" content="1" /> -->
+  <h1>{{.Title}}</h1>
+  <div>{{printf "%s" .Body}}</div>
+</head>
+
+<script>
+console.log("HELLO TESTING in view")
+
+function refresh() {
+  console.log("In refresh")
+    // make Ajax call here, inside the callback call:
+    location.reload();
+    // ...
+}
+
+setInterval(refresh, 100);
+</script>
