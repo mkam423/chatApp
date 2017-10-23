@@ -1,3 +1,9 @@
+<style>
+#response {
+  white-space:pre;
+}
+</style>
+
 
 <h1>{{.Title}}.txt</h1>
 <div id="response">place</div>
@@ -14,7 +20,7 @@ function refresh(){
        document.getElementById("response").innerText = this.responseText
        document.getElementById("response").value = this.responseText
        var data = this.responseText
-       //console.log(data)
+       console.log(data)
      }
    };
 
