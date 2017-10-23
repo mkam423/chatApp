@@ -10,7 +10,7 @@ import (
 )
 
 var validPath = regexp.MustCompile("^/(edit|save|view|refresh)/([a-zA-Z0-9]+)$")
-var templates = template.Must(template.ParseFiles("edit.html", "view2.html"))
+var templates = template.Must(template.ParseFiles("edit.html", "view.html"))
 
 type Page struct {
 	Title string
@@ -41,7 +41,7 @@ func viewHandler(w http.ResponseWriter, r *http.Request, title string) {
       http.Redirect(w, r, "/edit/"+title, http.StatusFound)
       return
   }
-  renderTemplate(w, "view2", p)
+  renderTemplate(w, "view", p)
 }
 
 //Outline of edit page
