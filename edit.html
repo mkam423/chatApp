@@ -7,26 +7,26 @@
   </div>
 
 <script>
-// document.writer.writer.focus();
-console.log("Hello testing in edit.html")
-
-function refresh() {
+function update() {
   var node = document.getElementById('writer')
   var path = "/save/" + {{.Title}}
   var body = node.value
-  // console.log("In refresh");
+  // console.log("In update");
   // console.log("body: %s", body);
   // console.log("path: %s", path);
-
-  post(path, body);
+  
+  postBody(path, body);
 }
 
-function post(path, body) {
+function postBody(path, body) {
   var xhr = new XMLHttpRequest()
   xhr.open("POST", path, true)
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8")
   xhr.send(body)
 }
 
-setInterval(refresh, 100)
+// document.getElementById("writer").focus()
+console.log("Hello testing in edit.html")
+setInterval(update, 3000)
+
 </script>
