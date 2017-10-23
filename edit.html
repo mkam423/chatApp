@@ -1,9 +1,7 @@
 <h1>Editing {{.Title}}.txt</h1>
 
   <div>
-    <textarea name="body" id=writer rows="50" cols="150">
-      {{printf "%s" .Body}}
-    </textarea>
+    <textarea name="body" id=writer rows="50" cols="150">{{printf "%s" .Body}}</textarea>
   </div>
 
 <script>
@@ -14,7 +12,7 @@ function update() {
   // console.log("In update");
   // console.log("body: %s", body);
   // console.log("path: %s", path);
-  
+
   postBody(path, body);
 }
 
