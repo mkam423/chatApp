@@ -1,19 +1,27 @@
 
 <head>
-  <!-- <meta http-equiv="refresh" content="1" /> -->
-  <h1>{{.Title}}</h1>
-  <div>{{printf "%s" .Body}}</div>
+  <h1>{{.Title}}.txt</h1>
+  <div id="response"></div>
 </head>
 
 <script>
-console.log("HELLO TESTING in view")
+function refresh(){
+  var xhr = new XMLHttpRequest()
+  var path = "/refresh/" + {{.Title}}
+  //console.log("Path: %s", path)
 
-function refresh() {
-  console.log("In refresh")
-    // make Ajax call here, inside the callback call:
-    location.reload();
-    // ...
+  xhr.open("GET", path, true)
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8")
+  xhr.send()
+
+  xhr.onreadystatechange = function() {
+     if (this.status == 200) {
+       document.getElementById("response").innerHTML = this.responseText
+       var data = this.responseText
+       //console.log(data)
+     }
+   };
 }
 
-setInterval(refresh, 100);
+setInterval(refresh, 3000)
 </script>
