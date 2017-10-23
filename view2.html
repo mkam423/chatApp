@@ -1,8 +1,7 @@
 
-<head>
-  <h1>{{.Title}}.txt</h1>
-  <div id="response"></div>
-</head>
+<h1>{{.Title}}.txt</h1>
+<div id="response">place</div>
+
 
 <script>
 function refresh(){
@@ -10,17 +9,18 @@ function refresh(){
   var path = "/refresh/" + {{.Title}}
   //console.log("Path: %s", path)
 
-  xhr.open("GET", path, true)
-  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8")
-  xhr.send()
-
   xhr.onreadystatechange = function() {
      if (this.status == 200) {
-       document.getElementById("response").innerHTML = this.responseText
+       document.getElementById("response").innerText = this.responseText
+       document.getElementById("response").value = this.responseText
        var data = this.responseText
        //console.log(data)
      }
    };
+
+  xhr.open("GET", path, true)
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8")
+  xhr.send()
 }
 
 setInterval(refresh, 3000)
