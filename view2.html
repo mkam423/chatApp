@@ -1,5 +1,4 @@
 
-
 <h1>{{.Title}}.txt</h1>
 <div id="response">place</div>
 
@@ -15,14 +14,13 @@ function refresh(){
        document.getElementById("response").innerText = this.responseText
        document.getElementById("response").value = this.responseText
        var data = this.responseText
-       console.log(data)
+       //console.log(data)
      }
    };
 
   xhr.open("GET", path, true)
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8")
   xhr.send()
-
 }
 
 setInterval(refresh, 3000)
