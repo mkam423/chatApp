@@ -1,16 +1,16 @@
 <h1>Editing {{.Title}}.txt</h1>
+<div>
+  <textarea name="body" id=writer rows="50" cols="150">{{printf "%s" .Body}}</textarea>
+</div>
 
-  <div>
-    <textarea name="body" id=writer rows="50" cols="150">{{printf "%s" .Body}}</textarea>
-  </div>
 
 <script>
 function update() {
-  var node = document.getElementById('writer')
+  var body = document.getElementById('writer').value
   var path = "/save/" + {{.Title}}
-  var body = node.value
+
   // console.log("In update");
-  // console.log("body: %s", body);
+  //  console.log("body: %s", body)
   // console.log("path: %s", path);
 
   postBody(path, body);
