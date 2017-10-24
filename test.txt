@@ -1,10 +1,16 @@
-hello there
+This is a test for the view
 
-this is how you do the return line
 
-testing breakline now
 
-         woohoo still working
 
-int main () {
-  int num;
+
+
+
+hello
+
+
+
+text area
+
+
+Testing overflow of characters .~~~~~~~~~~~~~~~~~~~~~~~~~ 
