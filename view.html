@@ -7,13 +7,13 @@
         padding-top: 50px;
         padding-bottom: 50px;
         font-family: "Courier", monospace;
-        font-size:48px;
+        font-size: 48px;
         font-weight: bold;
       }
       textarea{
         font-family: "Courier New", monospace;
         font size: 14px;
-        white-space:pre;
+        white-space:pre-wrap;
       }
     </style>
 </head>
@@ -21,7 +21,7 @@
   <body>
     <h1 class="header"> Viewing {{.Title}}.txt </h1>
     <div class="row">
-      <textarea class="col" id="response" readonly> Pulling updated image...</textarea>
+      <textarea class="col" id="response" rows="25" readonly> Pulling updated image...</textarea>
       <textarea class="col" rows="25" placeholder="Place for notes..." autofocus></textarea>
     </div>
 
