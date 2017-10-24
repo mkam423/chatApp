@@ -1,16 +1,1 @@
-This is a test for the view
-
-
-
-
-
-
-
-hello
-
-
-
-text area
-
-
-Testing overflow of characters .~~~~~~~~~~~~~~~~~~~~~~~~~ 
+This file is used store the text that is stored for the viewing end and also stored for reference.
