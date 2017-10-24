@@ -38,49 +38,49 @@
     <button id="refreshStatus" onclick="toggleRefresh()" type="button">Pause refresh</button>
 
     <script>
-    function toggleRefresh(){
-      if (refreshStatus){
-        refreshStatus = false //Stop refresh
-        document.getElementById("refreshStatus").innerText = "Resume refresh"
-        document.getElementById("refreshStatus").value = "Resume refresh"
-        document.getElementById('statusOn').style.visibility = "none";
-        document.getElementById('statusOn').style.display = "none";
-        document.getElementById('statusOff').style.visibility = "block";
-        document.getElementById('statusOff').style.display = "block";
-      } else {
-        refreshStatus = true //Resume refresh
-        document.getElementById("refreshStatus").innerText = "Pause refresh"
-        document.getElementById("refreshStatus").value = "Pause refresh"
-        document.getElementById('statusOn').style.visibility = "block";
-        document.getElementById('statusOn').style.display = "block";
-        document.getElementById('statusOff').style.visibility = "none";
-        document.getElementById('statusOff').style.display = "none";
+      function toggleRefresh(){
+        if (refreshStatus){
+          refreshStatus = false //Stop refresh
+          document.getElementById("refreshStatus").innerText = "Resume refresh"
+          document.getElementById("refreshStatus").value = "Resume refresh"
+          document.getElementById('statusOn').style.visibility = "none";
+          document.getElementById('statusOn').style.display = "none";
+          document.getElementById('statusOff').style.visibility = "block";
+          document.getElementById('statusOff').style.display = "block";
+        } else {
+          refreshStatus = true //Resume refresh
+          document.getElementById("refreshStatus").innerText = "Pause refresh"
+          document.getElementById("refreshStatus").value = "Pause refresh"
+          document.getElementById('statusOn').style.visibility = "block";
+          document.getElementById('statusOn').style.display = "block";
+          document.getElementById('statusOff').style.visibility = "none";
+          document.getElementById('statusOff').style.display = "none";
+        }
       }
-    }
 
-    function refresh(){
-      if(refreshStatus){
-        var xhr = new XMLHttpRequest()
-        var path = "/refresh/" + {{.Title}}
+      function refresh(){
+        if(refreshStatus){
+          var xhr = new XMLHttpRequest()
+          var path = "/refresh/" + {{.Title}}
 
-        xhr.onreadystatechange = function() {
-           if (this.status == 200) {
-             document.getElementById("response").innerText = this.responseText
-             document.getElementById("response").value = this.responseText
-           }
-         };
+          xhr.onreadystatechange = function() {
+             if (this.status == 200) {
+               document.getElementById("response").innerText = this.responseText
+               document.getElementById("response").value = this.responseText
+             }
+           };
 
-        xhr.open("GET", path, true)
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8")
-        xhr.send()
+          xhr.open("GET", path, true)
+          xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8")
+          xhr.send()
+        }
       }
-    }
 
-    console.log("Hello in view.html")
-    document.getElementById('statusOff').style.visibility = "none";
-    document.getElementById('statusOff').style.display = "none";
-    var refreshStatus=true;
-    setInterval(refresh, 100)
+      console.log("Hello in view.html")
+      document.getElementById('statusOff').style.visibility = "none";
+      document.getElementById('statusOff').style.display = "none";
+      var refreshStatus=true;
+      setInterval(refresh, 100)
     </script>
   </body>
 </html>
