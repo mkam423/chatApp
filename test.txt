@@ -1,1 +1,11 @@
 This file is used store the text that is stored for the viewing end and also stored for reference.
+
+int main{
+
+  int num = 0;
+  cout << "This is num: " << num << endl;
+  cout << "Hello World!" << endl;
+
+  return 0;
+}
+

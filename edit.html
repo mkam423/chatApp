@@ -1,13 +1,31 @@
 <html>
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <style>
+      body{
+        padding-left: 50px;
+        padding-right: 50px;
+      }
+      textarea{
+        font-family: "Courier New", monospace;
+        font size: 14px;
+      }
+      .header{
+        text-align: center;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        font-family: "Courier", monospace;
+        font-size: 48px;
+        font-weight: bold;
+      }
+    </style>
   </head>
 
   <body>
-    <h1> Editing {{.Title}}.txt </h1>
+    <h1 class="header"> Editing {{.Title}}.txt </h1>
     <div class="row">
-      <textarea class="col" name="body" id=writer rows="25">{{printf "%s" .Body}}</textarea>
-      <textarea class="col" rows="25">Place for notes...</textarea>
+      <textarea class="col" name="body" id=writer rows="25" autofocus>{{printf "%s" .Body}}</textarea>
+      <textarea class="col" rows="25" placeholder="Place for notes..."></textarea>
     </div>
 
     <script>
@@ -26,7 +44,7 @@
         xhr.send(body)
       }
 
-      console.log("Hello testing in edit.html")
+      console.log("Hello in edit.html")
       setInterval(update, 100)
     </script>
   </body>

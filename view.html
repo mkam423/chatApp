@@ -1,37 +1,86 @@
 <html>
   <head>
-    <style>
-      #response { white-space:pre;}
-    </style>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-  </head>
+    <style>
+      body{
+        padding-left: 50px;
+        padding-right: 50px;
+      }
+      textarea{
+        font-family: "Courier New", monospace;
+        font size: 14px;
+        white-space:pre-wrap;
+      }
+      .header{
+        text-align: center;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        font-family: "Courier", monospace;
+        font-size: 48px;
+        font-weight: bold;
+      }
+    </style>
+</head>
 
   <body>
-    <h1> Viewing {{.Title}}.txt </h1>
+    <h1 class="header"> Viewing {{.Title}}.txt </h1>
     <div class="row">
-      <textarea class="col" id="response">pulling updated image...</textarea>
-      <textarea class="col" rows="25">Place for notes...</textarea>
+      <textarea class="col" id="response" rows="25" readonly> Pulling updated image...</textarea>
+      <textarea class="col" rows="25" placeholder="Place for notes..." autofocus></textarea>
     </div>
+
+    <div>*Note: If you want to copy any/all of the text being viewed, use button to pause the constant refresh. <br></div>
+
+    <div>Refresh status:
+      <p id="statusOn" style="color:#3ae500; font-weight: bold;">ON</p>
+      <p id="statusOff" style="color:#f70300; font-weight: bold;">OFF</p>
+    </div>
+    <button id="refreshStatus" onclick="toggleRefresh()" type="button">Pause refresh</button>
+
     <script>
-    function refresh(){
-      var xhr = new XMLHttpRequest()
-      var path = "/refresh/" + {{.Title}}
+      function toggleRefresh(){
+        if (refreshStatus){
+          refreshStatus = false //Stop refresh
+          document.getElementById("refreshStatus").innerText = "Resume refresh"
+          document.getElementById("refreshStatus").value = "Resume refresh"
+          document.getElementById('statusOn').style.visibility = "none";
+          document.getElementById('statusOn').style.display = "none";
+          document.getElementById('statusOff').style.visibility = "block";
+          document.getElementById('statusOff').style.display = "block";
+        } else {
+          refreshStatus = true //Resume refresh
+          document.getElementById("refreshStatus").innerText = "Pause refresh"
+          document.getElementById("refreshStatus").value = "Pause refresh"
+          document.getElementById('statusOn').style.visibility = "block";
+          document.getElementById('statusOn').style.display = "block";
+          document.getElementById('statusOff').style.visibility = "none";
+          document.getElementById('statusOff').style.display = "none";
+        }
+      }
 
-      xhr.onreadystatechange = function() {
-         if (this.status == 200) {
-           document.getElementById("response").innerText = this.responseText
-           document.getElementById("response").value = this.responseText
-           var data = this.responseText
-           console.log(data)
-         }
-       };
+      function refresh(){
+        if(refreshStatus){
+          var xhr = new XMLHttpRequest()
+          var path = "/refresh/" + {{.Title}}
 
-      xhr.open("GET", path, true)
-      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8")
-      xhr.send()
-    }
+          xhr.onreadystatechange = function() {
+             if (this.status == 200) {
+               document.getElementById("response").innerText = this.responseText
+               document.getElementById("response").value = this.responseText
+             }
+           };
 
-    setInterval(refresh, 100)
+          xhr.open("GET", path, true)
+          xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8")
+          xhr.send()
+        }
+      }
+
+      console.log("Hello in view.html")
+      document.getElementById('statusOff').style.visibility = "none";
+      document.getElementById('statusOff').style.display = "none";
+      var refreshStatus=true;
+      setInterval(refresh, 100)
     </script>
   </body>
 </html>
