@@ -20,8 +20,8 @@
   <body>
     <h1 class="header"> Editing {{.Title}}.txt </h1>
     <div class="row">
-      <textarea class="col" name="body" id=writer rows="25">{{printf "%s" .Body}}</textarea>
-      <textarea class="col" rows="25">Place for notes...</textarea>
+      <textarea class="col" name="body" id=writer rows="25" autofocus>{{printf "%s" .Body}}</textarea>
+      <textarea class="col" rows="25" placeholder="Place for notes..."></textarea>
     </div>
 
     <script>
