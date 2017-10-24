@@ -24,8 +24,13 @@
       <textarea class="col" id="response" rows="25" readonly> Pulling updated image...</textarea>
       <textarea class="col" rows="25" placeholder="Place for notes..." autofocus></textarea>
     </div>
+    <button name="refreshStatus" onclick="toggleRefresh()" type="button">Turn refresh off</button>
 
     <script>
+    // function toggleRefresh(){
+    //   console.log("hello")
+    // }
+
     function refresh(){
       var xhr = new XMLHttpRequest()
       var path = "/refresh/" + {{.Title}}
@@ -34,8 +39,6 @@
          if (this.status == 200) {
            document.getElementById("response").innerText = this.responseText
            document.getElementById("response").value = this.responseText
-           var data = this.responseText
-           console.log(data)
          }
        };
 
