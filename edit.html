@@ -2,6 +2,14 @@
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <style>
+      body{
+        padding-left: 50px;
+        padding-right: 50px;
+      }
+      textarea{
+        font-family: "Courier New", monospace;
+        font size: 14px;
+      }
       .header{
         text-align: center;
         padding-top: 50px;
@@ -9,10 +17,6 @@
         font-family: "Courier", monospace;
         font-size: 48px;
         font-weight: bold;
-      }
-      textarea{
-        font-family: "Courier New", monospace;
-        font size: 14px;
       }
     </style>
   </head>
@@ -40,7 +44,7 @@
         xhr.send(body)
       }
 
-      console.log("Hello testing in edit.html")
+      console.log("Hello in edit.html")
       setInterval(update, 100)
     </script>
   </body>
