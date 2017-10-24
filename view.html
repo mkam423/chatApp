@@ -1,33 +1,37 @@
-<style>
-#response {
-  white-space:pre;
-}
-</style>
+<html>
+  <head>
+    <style>
+      #response { white-space:pre;}
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  </head>
 
+  <body>
+    <h1> Viewing {{.Title}}.txt </h1>
+    <div class="row">
+      <textarea class="col" id="response">pulling updated image...</textarea>
+      <textarea class="col" rows="25">Place for notes...</textarea>
+    </div>
+    <script>
+    function refresh(){
+      var xhr = new XMLHttpRequest()
+      var path = "/refresh/" + {{.Title}}
 
-<h1>{{.Title}}.txt</h1>
-<div id="response">place</div>
+      xhr.onreadystatechange = function() {
+         if (this.status == 200) {
+           document.getElementById("response").innerText = this.responseText
+           document.getElementById("response").value = this.responseText
+           var data = this.responseText
+           console.log(data)
+         }
+       };
 
+      xhr.open("GET", path, true)
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8")
+      xhr.send()
+    }
 
-<script>
-function refresh(){
-  var xhr = new XMLHttpRequest()
-  var path = "/refresh/" + {{.Title}}
-  //console.log("Path: %s", path)
-
-  xhr.onreadystatechange = function() {
-     if (this.status == 200) {
-       document.getElementById("response").innerText = this.responseText
-       document.getElementById("response").value = this.responseText
-       var data = this.responseText
-       console.log(data)
-     }
-   };
-
-  xhr.open("GET", path, true)
-  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8")
-  xhr.send()
-}
-
-setInterval(refresh, 3000)
-</script>
+    setInterval(refresh, 100)
+    </script>
+  </body>
+</html>

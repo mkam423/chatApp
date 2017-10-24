@@ -1,10 +1,1 @@
-hello there
-
-this is how you do the return line
-
-testing breakline now
-
-         woohoo still working
-
-int main () {
-  int num;
+This file is used store the text that is stored for the viewing end and also stored for reference.
