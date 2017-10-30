@@ -52,11 +52,9 @@
         var file = new Blob([data], {type: 'text/plain'});
 
         a.innerText = "Download " + fileName
-        document.getElementById('dl').style.display = "block"
         a.href = URL.createObjectURL(file);
         a.download = fileName;
-        console.log('end download')
-
+        document.getElementById('dl').style.display = "block"
       }
 
       function toggleRefresh(){
