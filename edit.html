@@ -18,16 +18,24 @@
         font-size: 48px;
         font-weight: bold;
       }
+      .subheader{
+        font-family: "Courier", monospace;
+        font-weight: bold;
+      }
     </style>
   </head>
 
   <body>
     <h1 class="header"> Editing {{.Title}}.txt </h1>
-    <div class="row">
-      <textarea class="col" name="body" id=writer rows="25" autofocus>{{printf "%s" .Body}}</textarea>
-      <textarea class="col" rows="25" placeholder="Place for notes..."></textarea>
+    <div class="subheader row">
+      <div class="col"><h2><b>Code</b></h2></div>
+      <div class="col"><h2><b>Notes</b></h2></div>
     </div>
-
+    <div class="row">
+      <textarea class="col" name="body" id=writer rows="20" autofocus>{{printf "%s" .Body}}</textarea>
+      <textarea class="col" rows="20" placeholder="Place for notes..."></textarea>
+    </div>
+    
     <script>
       function update() {
         var body = document.getElementById('writer').value
@@ -44,8 +52,10 @@
         xhr.send(body)
       }
 
+      //Startup commands
       console.log("Hello in edit.html")
       setInterval(update, 100)
     </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
   </body>
 </html>
