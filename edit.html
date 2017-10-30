@@ -18,6 +18,7 @@
         font-size: 48px;
         font-weight: bold;
       }
+
     </style>
   </head>
 
@@ -27,12 +28,11 @@
       <textarea class="col" name="body" id=writer rows="25" autofocus>{{printf "%s" .Body}}</textarea>
       <textarea class="col" rows="25" placeholder="Place for notes..."></textarea>
     </div>
-
     <script>
       function update() {
         var body = document.getElementById('writer').value
         var path = "/save/" + {{.Title}}
-
+        
         postBody(path, body);
       }
 

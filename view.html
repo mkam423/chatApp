@@ -26,34 +26,51 @@
     <h1 class="header"> Viewing {{.Title}}.txt </h1>
     <div class="row">
       <textarea class="col" id="response" rows="25" readonly> Pulling updated image...</textarea>
-      <textarea class="col" rows="25" placeholder="Place for notes..." autofocus></textarea>
+      <textarea class="col" id="notes" rows="25" placeholder="Place for notes..." autofocus></textarea>
     </div>
-
-    <div>*Note: If you want to copy any/all of the text being viewed, use button to pause the constant refresh. <br></div>
-
-    <div>Refresh status:
-      <p id="statusOn" style="color:#3ae500; font-weight: bold;">ON</p>
-      <p id="statusOff" style="color:#f70300; font-weight: bold;">OFF</p>
+    <div class="row">
+      <div class="col">
+        <div>*Note: If you want to copy any/all of the text being viewed, use button to pause the constant refresh. <br></div>
+        <div>Refresh status:
+          <p id="statusOn" style="color:#3ae500; font-weight: bold;">ON</p>
+          <p id="statusOff" style="color:#f70300; font-weight: bold;">OFF</p>
+        </div>
+        <button id="refreshStatus" onclick="toggleRefresh()" type="button">Pause refresh</button>
+      </div>
+      <div class="col">
+        <div> Use buttons below to save input to text files. </div>
+        <button id="saveCode" onclick="download('code.txt', 'response')" type="button">Save Code</button>
+        <button id="saveNotes" onclick="download('notes.txt', 'notes')" type="button">Save Notes</button>
+        <div id="dl" visibility="none"><a id="link" href="file.doc" download>Download</a></div>
+      </div>
     </div>
-    <button id="refreshStatus" onclick="toggleRefresh()" type="button">Pause refresh</button>
-
     <script>
+
+      function download(fileName, bodyId) {
+        var data = document.getElementById(bodyId).value
+        var a = document.getElementById("link");
+        var file = new Blob([data], {type: 'text/plain'});
+
+        a.innerText = "Download " + fileName
+        document.getElementById('dl').style.display = "block"
+        a.href = URL.createObjectURL(file);
+        a.download = fileName;
+        console.log('end download')
+
+      }
+
       function toggleRefresh(){
         if (refreshStatus){
           refreshStatus = false //Stop refresh
           document.getElementById("refreshStatus").innerText = "Resume refresh"
           document.getElementById("refreshStatus").value = "Resume refresh"
-          document.getElementById('statusOn').style.visibility = "none";
           document.getElementById('statusOn').style.display = "none";
-          document.getElementById('statusOff').style.visibility = "block";
           document.getElementById('statusOff').style.display = "block";
         } else {
           refreshStatus = true //Resume refresh
           document.getElementById("refreshStatus").innerText = "Pause refresh"
           document.getElementById("refreshStatus").value = "Pause refresh"
-          document.getElementById('statusOn').style.visibility = "block";
           document.getElementById('statusOn').style.display = "block";
-          document.getElementById('statusOff').style.visibility = "none";
           document.getElementById('statusOff').style.display = "none";
         }
       }
@@ -77,8 +94,8 @@
       }
 
       console.log("Hello in view.html")
-      document.getElementById('statusOff').style.visibility = "none";
       document.getElementById('statusOff').style.display = "none";
+      document.getElementById('dl').style.display = "none";
       var refreshStatus=true;
       setInterval(refresh, 100)
     </script>
