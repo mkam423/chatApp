@@ -49,12 +49,11 @@
         <div> Use buttons below to save input to text files. </div>
         <button class="btn btn-primary" id="saveCode" onclick="download('code.txt', 'response')" type="button">Save Code</button>
         <button class="btn btn-primary" id="saveNotes" onclick="download('notes.txt', 'notes')" type="button">Save Notes</button>
-        <div id="dl" visibility="none"><a id="link" href="file.doc" download>Download</a></div>
+        <div id="dl" visibility="none"><a id="link"></a></div>
       </div>
     </div>
 
     <script>
-
       function download(fileName, bodyId) {
         var data = document.getElementById(bodyId).value
         var a = document.getElementById("link");
@@ -88,7 +87,6 @@
           xhr.onreadystatechange = function() {
              if (this.status == 200) {
                document.getElementById("response").innerText = this.responseText
-               document.getElementById("response").value = this.responseText
              }
            };
 
