@@ -30,17 +30,17 @@
     </div>
     <div class="row">
       <div class="col">
-        <div>*Note: If you want to copy any/all of the text being viewed, use button to pause the constant refresh. <br></div>
-        <div>Refresh status:
+        <div>*Note: If you want to copy any/all of the text being viewed, use button to pause the constant refresh. <br> <br> </div>
+        <div><b>Refresh status:</b>
           <p id="statusOn" style="color:#3ae500; font-weight: bold;">ON</p>
           <p id="statusOff" style="color:#f70300; font-weight: bold;">OFF</p>
         </div>
-        <button id="refreshStatus" onclick="toggleRefresh()" type="button">Pause refresh</button>
+        <button class="btn btn-info" id="refreshStatus" onclick="toggleRefresh()" type="button">Pause refresh</button>
       </div>
       <div class="col">
         <div> Use buttons below to save input to text files. </div>
-        <button id="saveCode" onclick="download('code.txt', 'response')" type="button">Save Code</button>
-        <button id="saveNotes" onclick="download('notes.txt', 'notes')" type="button">Save Notes</button>
+        <button class="btn btn-primary" id="saveCode" onclick="download('code.txt', 'response')" type="button">Save Code</button>
+        <button class="btn btn-primary" id="saveNotes" onclick="download('notes.txt', 'notes')" type="button">Save Notes</button>
         <div id="dl" visibility="none"><a id="link" href="file.doc" download>Download</a></div>
       </div>
     </div>
