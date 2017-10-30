@@ -70,13 +70,11 @@
         if (refreshStatus){
           refreshStatus = false //Stop refresh
           document.getElementById("refreshStatus").innerText = "Resume refresh"
-          document.getElementById("refreshStatus").value = "Resume refresh"
           document.getElementById('statusOn').style.display = "none";
           document.getElementById('statusOff').style.display = "block";
         } else {
           refreshStatus = true //Resume refresh
           document.getElementById("refreshStatus").innerText = "Pause refresh"
-          document.getElementById("refreshStatus").value = "Pause refresh"
           document.getElementById('statusOn').style.display = "block";
           document.getElementById('statusOff').style.display = "none";
         }
@@ -100,6 +98,7 @@
         }
       }
 
+      //Startup commands
       console.log("Hello in view.html")
       document.getElementById('statusOff').style.display = "none";
       document.getElementById('dl').style.display = "none";
