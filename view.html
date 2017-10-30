@@ -19,27 +19,31 @@
         font-size: 48px;
         font-weight: bold;
       }
+      .subheader{
+        font-family: "Courier", monospace;
+        font-weight: bold;
+      }
     </style>
 </head>
 
   <body>
     <h1 class="header"> Viewing {{.Title}}.txt </h1>
-    <div class="row">
+    <div class="subheader row">
       <div class="col"><h2><b>Code</b></h2></div>
       <div class="col"><h2><b>Notes</b></h2></div>
     </div>
     <div class="row">
-      <textarea class="col" id="response" rows="25" readonly> Pulling updated image...</textarea>
-      <textarea class="col" id="notes" rows="25" placeholder="Place for notes..." autofocus></textarea>
+      <textarea class="col" id="response" rows="20" readonly> Pulling updated image...</textarea>
+      <textarea class="col" id="notes" rows="20" placeholder="Place for notes..." autofocus></textarea>
     </div>
     <div class="row">
       <div class="col">
-        <div>*Note: If you want to copy any/all of the text being viewed, use button to pause the constant refresh. <br> <br> </div>
+        <div>*Note: If you want to copy any/all of the text being viewed, use button to pause the constant refresh. <br/> </div>
         <div><b>Refresh status:</b>
           <p id="statusOn" style="color:#3ae500; font-weight: bold;">ON</p>
           <p id="statusOff" style="color:#f70300; font-weight: bold;">OFF</p>
         </div>
-        <button class="btn btn-info" id="refreshStatus" onclick="toggleRefresh()" type="button">Pause refresh</button>
+        <button class="btn btn-info" id="refreshStatus" onclick="toggleRefresh()" type="button">Pause refresh</button> <br/><br/>
       </div>
       <div class="col">
         <div> Use buttons below to save input to text files. </div>
