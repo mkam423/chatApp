@@ -32,15 +32,16 @@
       <div class="col"><h2><b>Notes</b></h2></div>
     </div>
     <div class="row">
+      <div id="lineCount" cols="3">1</div>
       <textarea class="col" name="body" id=writer rows="20" autofocus>{{printf "%s" .Body}}</textarea>
       <textarea class="col" rows="20" placeholder="Place for notes..."></textarea>
     </div>
-    
+
     <script>
       function update() {
         var body = document.getElementById('writer').value
         var path = "/save/" + {{.Title}}
-
+        updateLineCount()
         postBody(path, body);
       }
 
@@ -50,6 +51,22 @@
         xhr.open("POST", path, true)
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8")
         xhr.send(body)
+      }
+
+      function updateLineCount(){
+        var lines = document.getElementById('writer').value
+        var count = lines.split(/\r\n|\r|\n/).length;
+        setLineCount(count)
+      }
+
+      function setLineCount(count) {
+        var display = ""
+        var lineNum = 1
+        while(lineNum <= count) {
+          display += (lineNum)+"<br>"
+          lineNum++
+        }
+        document.getElementById("lineCount").innerHTML = display
       }
 
       //Startup commands

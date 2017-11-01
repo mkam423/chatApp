@@ -23,6 +23,7 @@
         font-family: "Courier", monospace;
         font-weight: bold;
       }
+      
     </style>
 </head>
 
@@ -33,6 +34,7 @@
       <div class="col"><h2><b>Notes</b></h2></div>
     </div>
     <div class="row">
+      <div id="lineCount" cols="3">1</div>
       <textarea class="col" id="response" rows="20" readonly> Pulling updated image...</textarea>
       <textarea class="col" id="notes" rows="20" placeholder="Place for notes..." autofocus></textarea>
     </div>
@@ -87,6 +89,7 @@
           xhr.onreadystatechange = function() {
              if (this.status == 200) {
                document.getElementById("response").innerText = this.responseText
+               updateLineCount()
              }
            };
 
@@ -94,6 +97,22 @@
           xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8")
           xhr.send()
         }
+      }
+
+      function updateLineCount(){
+        var lines = document.getElementById('response').value
+        var count = lines.split(/\r\n|\r|\n/).length;
+        setLineCount(count)
+      }
+
+      function setLineCount(count) {
+        var display = ""
+        var lineNum = 1
+        while(lineNum <= count) {
+          display += (lineNum)+"<br>"
+          lineNum++
+        }
+        document.getElementById("lineCount").innerHTML = display
       }
 
       //Startup commands
