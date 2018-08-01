@@ -6,7 +6,7 @@
 `git clone https://github.com/mkam423/chatApp`
 
 ### 2) Run file <br>
-`go run server2.go`
+`go run server.go`
 
 ### 3) Edit/View <br>
 
